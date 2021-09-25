@@ -1,11 +1,10 @@
 <?php
-require('./functions/logged.php');
 require('./Models/Student.php');
 $mensagem = '';
 $aluno = new Student();
 $alunos = $aluno->getStudents();
 $alunos = json_decode($alunos);
-logged();
+
 if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
     $mensagem = $_GET['mensagem'];
 }
@@ -39,7 +38,7 @@ if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
                 <td>
                     <a href="?p=ver-aluno&id=<?= $a->id;?>" class="btn btn-sm btn-info">Visualizar</a>
                     <a href="?p=novo-aluno&id=<?=$a->id;?>" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="../controller/studentController.php?acao=remover&id=<?=$a->id;?>" class="btn btn-sm btn-danger">
+                    <a onclick="return confirm('Tem certeza que deseja excluir o aluno?');" href="../controller/studentController.php?acao=remover&id=<?=$a->id;?>" class="btn btn-sm btn-danger">
                         Ecluir
                     </a>
                 </td>

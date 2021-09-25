@@ -1,11 +1,9 @@
 <?php
-require('./functions/logged.php');
 require('./Models/Courses.php');
 $mensagem = '';
 $curso = new Courses();
 $cursos = $curso->getAllCourse();
 $cursos = json_decode($cursos);
-logged();
 if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
     $mensagem = $_GET['mensagem'];
 }
@@ -25,6 +23,7 @@ if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
             <tr>
                 <th>ID</th>
                 <th>Nome do Curso</th>
+                <th>Data de Início</th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>
@@ -34,11 +33,12 @@ if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
             <tr>
                 <td><?= $c->id; ?></td>
                 <td><?= $c->nameCourse; ?></td>
+                <td><?= date('d/m/Y', strtotime($c->dateStart)); ?></td>
                 <td><?= $c->status == 1 ? 'Ativo' : 'Inativo'; ?></td>
                 <td>
-                    <a href="?p=ver-curso&id=<?= $c->id;?>" class="btn btn-sm btn-info">Visualizar</a>
-                    <a href="?p=novo-curso&id=<?=$c->id;?>" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="../controller/courseController.php?acao=remover&id=<?=$c->id;?>" class="btn btn-sm btn-danger">
+                    <a href="?p=ver-curso&id=<?= $c->id;?>" class="btn btn-sm btn-info" title="Visualizar">Visualizar</a>
+                    <a href="?p=novo-curso&id=<?=$c->id;?>" class="btn btn-sm btn-warning" title="Editar">Editar</a>
+                    <a onclick="return confirm('Tem certeza que deseja excluir o curso?')" href="../controller/courseController.php?acao=remover&id=<?=$c->id;?>" class="btn btn-sm btn-danger" title="Excluir">
                         Ecluir
                     </a>
                 </td>

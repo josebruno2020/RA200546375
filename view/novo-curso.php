@@ -36,8 +36,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 ?>
 
-
+<?php if(!$edit): ?>
 <h1>Novo Curso</h1>
+<?php else: ?>
+<h1>Editar Curso</h1>
+<?php endif; ?>
 <div class="content card">
     <div class="card-body">
         <form action="" method="post">

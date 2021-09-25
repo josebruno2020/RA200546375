@@ -7,15 +7,16 @@ const ROUTES = [
     'alunos',
     'novo-aluno',
     'ver-aluno',
-    'login'
+    'login',
+    'logout'
 ];
 
 
-function setPage($routes) {
+function setPage() {
     $page = 'alunos';
     if(isset($_GET['p']) && !empty($_GET['p'])) {
         $page = $_GET['p'];
-        if(!in_array($page, $routes)) {
+        if(!in_array($page, ROUTES)) {
             $page = '404';
         }
     }

@@ -1,10 +1,11 @@
 <?php
 session_start();
 require_once('./routes/routes.php');
-$page = setPage(ROUTES);
-function logout() {
-    session_unset($_SESSION['logged']);
-    header("Location: ?p=login");
+require_once('./functions/logged.php');
+$page = setPage();
+$page_without_login = array('login', '404');
+if(!in_array($page, $page_without_login) && !logged()) {
+    header("Location: /?p=login");
 }
 ?>
 
@@ -30,6 +31,7 @@ function logout() {
                 <div class="navbar-nav">
                     <a class="nav-link" href="?p=alunos">Alunos</a>
                     <a class="nav-link" href="?p=cursos">Cursos</a>
+                    <a class="nav-link" href="?p=logout">Sair</a>
                 </div>
                 </div>
             </div>
