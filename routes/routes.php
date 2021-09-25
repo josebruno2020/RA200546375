@@ -2,8 +2,11 @@
 
 const ROUTES = [
     'cursos',
+    'novo-curso',
+    'ver-curso',
     'alunos',
     'novo-aluno',
+    'ver-aluno',
     'login'
 ];
 

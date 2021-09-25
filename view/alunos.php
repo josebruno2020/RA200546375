@@ -1,17 +1,25 @@
 <?php
 require('./functions/logged.php');
 require('./Models/Student.php');
+$mensagem = '';
 $aluno = new Student();
 $alunos = $aluno->getStudents();
 $alunos = json_decode($alunos);
 logged();
-
+if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
+    $mensagem = $_GET['mensagem'];
+}
 ?>
 
 
 <h1>Alunos do Sistema</h1>
 <div class="content">
     <a href="?p=novo-aluno" class="btn btn-primary">Adicionar Novo Aluno</a>
+    <?php if($mensagem != ''): ?>
+        <div class="alert alert-<?=$_GET['tipo'];?>">
+            <?= $mensagem; ?>
+        </div>
+    <?php endif; ?>
     <table class="table">
         <thead>
             <tr>
@@ -29,12 +37,17 @@ logged();
                 <td><?= $a->name; ?></td>
                 <td><?= $a->email; ?></td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-info">Visualizar</a>
-                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger">Excluir</a>
+                    <a href="?p=ver-aluno&id=<?= $a->id;?>" class="btn btn-sm btn-info">Visualizar</a>
+                    <a href="?p=novo-aluno&id=<?=$a->id;?>" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="../controller/studentController.php?acao=remover&id=<?=$a->id;?>" class="btn btn-sm btn-danger">
+                        Ecluir
+                    </a>
                 </td>
             </tr>
+            
+
             <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+
