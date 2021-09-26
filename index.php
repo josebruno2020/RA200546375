@@ -5,7 +5,7 @@ require_once('./functions/logged.php');
 $page = setPage();
 $page_without_login = array('login', '404');
 if(!in_array($page, $page_without_login) && !logged()) {
-    header("Location: /?p=login");
+    header("Location: ?p=login");
 }
 ?>
 
