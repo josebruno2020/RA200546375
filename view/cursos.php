@@ -38,8 +38,8 @@ if(isset($_GET['mensagem']) && !empty($_GET['mensagem'])) {
                 <td>
                     <a href="?p=ver-curso&id=<?= $c->id;?>" class="btn btn-sm btn-info" title="Visualizar">Visualizar</a>
                     <a href="?p=novo-curso&id=<?=$c->id;?>" class="btn btn-sm btn-warning" title="Editar">Editar</a>
-                    <a onclick="return confirm('Tem certeza que deseja excluir o curso?')" href="../controller/courseController.php?acao=remover&id=<?=$c->id;?>" class="btn btn-sm btn-danger" title="Excluir">
-                        Ecluir
+                    <a onclick="return confirm('Tem certeza que deseja excluir o curso?')" href="controller/courseController.php?acao=remover&id=<?=$c->id;?>" class="btn btn-sm btn-danger" title="Excluir">
+                        Excluir
                     </a>
                 </td>
             </tr>

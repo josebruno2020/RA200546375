@@ -15,8 +15,8 @@ function destroyAluno($id)
     $aluno = new Student();
     $remocao = $aluno->excluirStudent($id);
     if($remocao) {
-        return header("Location: /?p=alunos&mensagem=Aluno removido com sucesso!&tipo=success");
+        return header("Location: ../?p=alunos&mensagem=Aluno removido com sucesso!&tipo=success");
     } else {
-        return header("Location: /?p=alunos&mensagem=Falha ao remover o aluno&tipo=error");
+        return header("Location: ../?p=alunos&mensagem=Falha ao remover o aluno&tipo=error");
     }
 }

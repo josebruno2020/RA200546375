@@ -14,8 +14,8 @@ function destroyCourse($id)
     $curso = new Courses();
     $result = $curso->excluirCourse($id);
     if($result) {
-        return header("Location: /?p=cursos&mensagem=Curso removido com sucesso!&tipo=success");
+        return header("Location: ../?p=cursos&mensagem=Curso removido com sucesso!&tipo=success");
     } else {
-        return header("Location: /?p=cursos&mensagem=Falha ao remover o curso&tipo=error");
+        return header("Location: ../?p=cursos&mensagem=Falha ao remover o curso&tipo=error");
     }
 }
